@@ -1,0 +1,90 @@
+.main-content {
+    background-color: #dcdeee;
+}
+
+.register-button {
+    margin-left: 1rem;
+    margin-right: 10rem;
+}
+
+.tittle {
+    font-size: 1.4rem;
+}
+
+.section-menu {
+    margin: 3rem 2rem 5rem 2rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.icon-search {
+    background: url('/assets/rplay-iconsearch.svg');
+    background-size: cover; /* Ajusta la imagen para cubrir todo el div */
+    background-position: center;
+}
+
+.input-search-container {
+    display: flex;
+    margin: 1rem 2rem 1rem 2rem;
+    padding: 0.3rem 1rem;
+    background-color: #dcdeee;
+    color: #191713;
+    border-color: #A6AAC9;
+    border-style: solid;
+    border-radius: 3rem;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input-search:focus {
+    background-color: #dcdeee;
+    color: #191713;
+    border-color: #A6AAC9;
+}
+
+.input-search {
+    background: none;
+}
+
+.main-content {
+    margin-top: 4rem;
+    margin-left: 6rem;
+    display: flex;
+    align-items:flex-start;
+    flex-direction: column;
+}
+
+.service-modal-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, auto); /* Distribución automática */
+    gap: 1rem; /* Espacio entre ítems */
+    width: 100%; /* Asegúrate de que el contenedor tenga un ancho adecuado */
+}
+
+.service-modal-item {
+    height: 9rem;
+    width: 14rem;
+    padding: 1rem 1rem 1rem 1.4rem;
+    background-color: #191713;
+    color: #dcdeee;
+    border-radius: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.service-modal-item h2 {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.button-plans {
+    background: none;
+    color: #A6AAC9;
+}
+
+.button-plans:hover {
+    background: none;
+    color: #dcdeee;
+}
+

@@ -1,0 +1,75 @@
+.form-plans-tittle {
+    color: #dcdeee;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.plans-details-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 0rem 0rem 2rem 0rem;
+}
+
+.form-plans-container {
+    padding: 1rem 2rem;
+    background-color: #191713;
+    border-radius: 2rem;
+    height:fit-content;
+}
+
+.files-section-details {
+    margin-bottom: 2rem;
+    padding: 1.2rem 1rem 0rem 1rem;
+    display: flex;
+    background-color: #dcdeee;
+    border-radius: 1.1rem;
+}
+
+.files-section-details label {
+    color: #191713;
+    font-size: 1rem;
+}
+
+.files-section-details input {
+    font-size: 1rem;
+    background: none;
+    color: #6220bf;
+    width: 7rem;
+    max-width: fit-content;
+}
+
+.files-section-details select {
+    font-size: 1rem;
+    background: none;
+    color: #6220bf;
+    width: fit-content;
+    border-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.files-section-details button {
+    font-family: 'Inter', sans-serif;
+    vertical-align: middle;
+    background: none;
+    font-size: 1rem;
+    color: #191713;
+    font-weight: 600;
+}
+
+.files-section-details button:hover {
+    color: #6220bf;
+}
+
+.button-plan-details {
+    margin-left: 0;
+    margin-bottom: 2rem;
+    background: none;
+    color: #A6AAC9;
+}
+
+.button-plan-details:hover {
+    margin-left: 0;
+    background: none;
+    color: #dcdeee;
+}

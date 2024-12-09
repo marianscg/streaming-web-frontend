@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.61 27.06">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #6220bf;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Cuentas_streaming" data-name="Cuentas streaming">
+    <g>
+      <circle class="cls-1" cx="8.28" cy="8.28" r="7.28"/>
+      <line class="cls-1" x1="13.26" y1="13.09" x2="25.88" y2="26.37"/>
+    </g>
+  </g>
+</svg>

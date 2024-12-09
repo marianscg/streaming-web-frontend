@@ -1,0 +1,97 @@
+/* Estilo general */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #dcdeee;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 2.3rem;
+}
+p {
+    font-weight: 600;
+    font-size: 3rem;
+}
+
+label {
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+input {
+    font-size: 1.2rem;
+    background-color: #3e3d42;
+    border-style: none;
+    border-radius: 0.5rem;
+    width: 17rem;
+    padding: 0.6rem 1rem;
+    color: #c3c6dd;
+}
+
+input:focus {
+    outline: none;
+    background-color:#3e3d42;
+}
+
+/* Contenedor principal */
+.login-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+button {
+    display: block;
+    margin: auto;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #dcdeee;
+    background-color: #6220bf;
+    border-style: none;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+button:hover {
+    background-color: #5b04a7;
+}
+
+
+/* Sección del formulario */
+.login-form {
+    width: 50%; /* Ocupa la mitad izquierda */
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #191713;
+    color: #dcdeee;
+}
+
+/* Imagen de fondo */
+.background-image {
+    width: 50%; /* Ocupa la mitad derecha */
+    background: url('/assets/rplay-background-image.webp'); /* Asegúrate de que la ruta sea correcta */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el div */
+    background-position: center;
+}
+
+.input-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.rplay-logo {
+    background: url('/assets/rplaylogo.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,119 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo negro con 50% de opacidad */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto
+  }
+
+.overlay-plans {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto
+}
+
+
+.form-container {
+    padding: 1rem 2rem;
+    background-color: #dcdeee;
+    border-radius: 2rem;
+    height:fit-content;
+}
+
+.form-tittle {
+    color: #6220bf;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.register-form input {
+    color: #191713;
+    background-color: #C3C6DD;
+    margin-bottom: 1.5rem;
+}
+
+.register-form input:focus {
+    color:#191713;
+}
+
+.register-form label {
+    color: #191713;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.exit-img {
+    background: url('/assets/rplay-iconexit.svg');
+    background-size: cover; 
+    background-position: center;
+}
+
+.exit-button-container {
+    display: flex;
+    justify-content: right;
+
+}
+
+.exit-button {
+    margin: 0;
+    background: none;
+}
+
+.exit-button:hover {
+    background: none;
+}
+
+.files-section {
+    display: flex;
+}
+
+.plans-file {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+}
+
+.add-plan {
+    display: flex;
+    margin: auto auto 2rem 0rem;
+}
+
+.plan-file-select {
+    background-color: #C3C6DD;
+    margin-bottom: 1.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    border-style: none;
+    border-radius: 0.5rem;
+    width: 17rem;
+    padding: 0.6rem 1.3rem 0.6rem 1rem; 
+}
+
+.remove-button {
+    padding: 0.7rem;
+    font-size: 1rem;
+    background-color: #BC272D;
+}
+
+.remove-button:hover {
+    background-color: #83272D;
+}
