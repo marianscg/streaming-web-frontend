@@ -2,7 +2,7 @@ import axios from 'axios';
 import { config } from '../config/envs';
 
 
-export const handleCreateService = async (event, formData, changeToOpenModal) => {
+export const handleCreateService = async (event, formData) => {
     event.preventDefault();
     try {
         const response = await axios.post(`${config.apiBaseUrl}/services`, formData, {
@@ -10,7 +10,8 @@ export const handleCreateService = async (event, formData, changeToOpenModal) =>
         });
         // const { isAuthenticated, isAdmin } = response.data
         if (response.status === 201) {
-             changeToOpenModal();
+             console.log(response.data.serviceId)
+             return response.data.serviceId;
         } else {
             alert('El usuario o la clave son incorrectos');
         }

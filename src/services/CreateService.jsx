@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useModal } from '../hooks/useModal';
 import { CreatePlans } from './CreatePlans';
 import './forms.css';
@@ -20,15 +20,20 @@ export const CreateService = () => {
 
     const handleSubmit = async (event) => {
         try {
-            const createdService = await handleCreateService(event, updateFormData, changeToOpen);
-            if (createdService?.id) {
-                setServiceId(createdService.id); // Guarda el ID del servicio
-                changeToOpen(); // Abre el modal
-            }
+            const createdService = await handleCreateService(event, updateFormData);
+            setServiceId(createdService);
+            
         } catch (error) {
             console.error("Error al crear el servicio:", error);
         }
     };
+
+    useEffect(() => {
+        if(serviceId){
+            changeToOpen();
+            console.log(serviceId);
+        }
+    }, [serviceId])
 
     return (
         <>

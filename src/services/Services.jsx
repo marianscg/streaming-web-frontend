@@ -6,7 +6,27 @@ import { useModal } from '../hooks/useModal'
 import { CreateService } from './CreateService'
 import { getServiceById } from './service'
 export const Services = () => {
-  const { isOpen, changeToOpen } = useModal();
+    const { isOpen, changeToOpen } = useModal();
+    const [inputSearchService, setInputSearchService] = useState()
+    // const searchService = async (value) => {
+    //   const serviceById = await getServiceByName(value);
+    //   setInputCategory(categoryByName);
+    // };
+  
+    // const onChange = ({ target }) => {
+    //   setInputValue(target.value);
+    // };
+  
+    // useEffect(() => {
+    //   setAndGetCategories();
+    // }, []);
+  
+    // useEffect(() => {
+    //   searchService(inputValue);
+    //   if (inputValue.trim().length <= 1) setInputCategory([]);
+    // }, [inputValue]);
+  
+
 
     return (
       <>

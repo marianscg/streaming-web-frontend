@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPlan } from "./plans";
 
 export const CreatePlans = ({ id }) => {
@@ -49,8 +49,6 @@ export const CreatePlans = ({ id }) => {
         createPlan(event, payload, id)
         
     };
-
-
     
     return (
         <>

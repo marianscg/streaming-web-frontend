@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export const AddServiceModal = () => {
+export const AddServiceModal = ({id}) => {
     const [serviceList, setServiceList] = useState([{
         name: "",
         plan: "",
@@ -22,6 +22,30 @@ export const AddServiceModal = () => {
         list.splice(index, 1);
         setServiceList(list);
     }
+
+    const handlePlanChange = (index, event) => {
+        const { name, value } = event.target;
+        const updatedPlans = [...plansList];
+    
+        // Convierte a número si el campo debe contener un número
+        updatedPlans[index][name] =
+            name === "price" || name === "profiles_per_plan"
+                ? Number(value)
+                : value;
+    
+        setPlansList(updatedPlans);
+    };
+
+    // Manejar el envío del formulario
+    const handleSubmit = async (event) => {
+        const payload = {
+            servicePlans: [
+                ...plansList
+            ]
+        }
+        createPlan(event, payload, id)
+        
+    };
 
     return (
     <>

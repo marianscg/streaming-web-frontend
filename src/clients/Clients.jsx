@@ -4,7 +4,6 @@ import { useModal } from '../hooks/useModal'
 import './clients.css'
 import { TableOptionsModal } from './TableOptionsModal'
 import { ClientRegister } from './ClientRegister'
-import { clients } from './listTest'
 import { ClientDetails } from './ClientDetails'
 import { ClientUpdate } from './ClientUpdate'
 import { ManageClientServices } from './ManageClientServices'
@@ -14,7 +13,9 @@ export const Clients = () => {
     const [clientDetailsModal, setClientDetailsModal] = useState(false);
     const [activeOptionModal, setActiveOptionModal] = useState(null);
     const [isOptionModalOpen, setIsOptionModalOpen] = useState(null);
-    const [clientsList, setClientsList] = useState(clients);
+    const [clientsList, setClientsList] = useState();
+
+    
     
     const handleisOptionModalOpenbyId = (clientId) => {
         setIsOptionModalOpen(clientId);
@@ -65,7 +66,7 @@ export const Clients = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {clientsList.map((client, index) => (
+                    {/* {clientsList.map((client, index) => (
                     <tr key={index}>
                         <td>{client.name}</td>
                         <td>{client.telf}</td>
@@ -99,10 +100,10 @@ export const Clients = () => {
                         )}
                         </td>
                     </tr>
-                    ))}
+                    ))} */}
                 </tbody>
             </table>
-            {activeOptionModal === "client-update" && (
+            {/* {activeOptionModal === "client-update" && (
                 <div className="overlay">
                 <div className="form-container">
                 <div className="exit-button-container">
@@ -127,7 +128,7 @@ export const Clients = () => {
                 <ManageClientServices/>
                 </div>
             </div>
-            )}
+            )} */}
             </section>
           </main>
     </>)}
