@@ -3,25 +3,26 @@ import axios from "axios";
 import { config } from "../config/envs";
 
 export const ClientDetails = ({ clientId }) => {
-  const [clientData, setClientData] = useState(null);
-  console.log("Aquii: ", clientId);
-  useEffect(() => {
-    const fetchClientData = async () => {
-      try {
-        const response = await axios.get(
-          `${config.apiBaseUrl}/users/${clientId}/services`
-        );
+    const [clientData, setClientData] = useState(null);
+    console.log("Aquii: ", clientId);
 
-        setClientData(response.data.data[0]);
-      } catch (error) {
-        console.error("Error al obtener los datos del cliente:", error);
+    useEffect(() => {
+      const fetchClientData = async () => {
+        try {
+          const response = await axios.get(
+            `${config.apiBaseUrl}/users/${clientId}/services`
+          );
+
+          setClientData(response.data.data[0]);
+        } catch (error) {
+          console.error("Error al obtener los datos del cliente:", error);
+        }
+      };
+
+      if (clientId) {
+        fetchClientData();
       }
-    };
-
-    if (clientId) {
-      fetchClientData();
-    }
-  }, [clientId]);
+    }, [clientId]);
 
   return (
     <>

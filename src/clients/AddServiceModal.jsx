@@ -1,52 +1,78 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { getServices } from '../services/service'
+import { getPlansByService } from './manageClients'
 
 export const AddServiceModal = ({id}) => {
     const [serviceList, setServiceList] = useState([{
-        name: "",
-        plan: "",
-        entry_date: "",
-        period: "",
+        service_plans_id: "",
+        account_id: "",
+        profile_pin: "",
+        profile_name: ""
     }])
 
     const handleServicesList = () => {
             setServiceList([...serviceList, {
-                name: "",
-                plan: "",
-                entry_date: "",
-                period: "",
+                service_plans_id: "",
+                account_id: "",
+                profile_pin: "",
+                profile_name: ""
             }])
         }
-
+        
     const handleServiceRemoveButton = (index) => {
         const list = [...serviceList];
         list.splice(index, 1);
         setServiceList(list);
     }
-
-    const handlePlanChange = (index, event) => {
+    const [selectedServiceId, setSelectedServiceId] = useState(null);
+    const handleServiceChange = (index, event) => {
         const { name, value } = event.target;
-        const updatedPlans = [...plansList];
+        const updatedService = [...serviceList];
     
         // Convierte a número si el campo debe contener un número
-        updatedPlans[index][name] =
-            name === "price" || name === "profiles_per_plan"
+        updatedService[index][name] =
+            name === "service_plans_id" || name === "account_id" || name === "profile_pin"
                 ? Number(value)
                 : value;
-    
-        setPlansList(updatedPlans);
+            if(name === "service_id") 
+                setSelectedServiceId(value);
+            
+        setServiceList(updatedService);
     };
 
     // Manejar el envío del formulario
     const handleSubmit = async (event) => {
-        const payload = {
-            servicePlans: [
-                ...plansList
-            ]
-        }
-        createPlan(event, payload, id)
+        
+        await assignAccount(event, serviceList, id);
         
     };
 
+    const [plansList, setPlansList] = useState([]);
+
+    const handleGetPlansByService = async(idService) => {
+        const rsp = await getPlansByService(idService);
+        setPlansList(rsp);
+        console.log(plansList);
+    }
+    
+
+
+    const [services, setServices] = useState([]);
+
+    const handleSelectServices = async() => {
+        const rsp = await getServices();
+        setServices(rsp);
+        console.log(rsp);
+    }
+    
+    useEffect(() => {
+        handleSelectServices();
+    }, [])
+
+    useEffect(() => {
+        if(selectedServiceId)
+        handleGetPlansByService(selectedServiceId);
+    }, [selectedServiceId])
     return (
     <>
         <h1 className="form-tittle">Añadir servicios</h1>
@@ -57,13 +83,20 @@ export const AddServiceModal = ({id}) => {
                 type="button"
                 className="add-plan">Agregar servicio</button>
             )}
-            {serviceList.map((plan, index) => (
+            {serviceList.map((service, index) => (
                 <section className="files-section">
                 <div className="plans-file">
                 <label>Nombre del servicio</label>
-                <input
-                    name="name"
-                    type="text"/>
+                <select
+                    className="plan-file-select"
+                    name="service_id"
+                    onChange={(e) => handleServiceChange(index, e)}
+                    value={service.id}>
+                    <option>Escoja una opción</option>
+                    {services.map((service) => (
+                        <option key={service.id} value={service.id}>{service.name}</option>
+                    ))}
+                </select>
                 </div>
                 <div className="plans-file">
                 <label>Plan</label>

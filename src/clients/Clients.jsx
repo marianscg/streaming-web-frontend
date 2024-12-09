@@ -7,8 +7,8 @@ import { ClientRegister } from "./ClientRegister";
 import { ClientDetails } from "./ClientDetails";
 import { ClientUpdate } from "./ClientUpdate";
 import { ManageClientServices } from "./ManageClientServices";
-import axios from "axios";
-import { config } from "../config/envs";
+import { getClients } from "./manageClients";
+import { AddServiceModal } from "./AddServiceModal";
 
 export const Clients = () => {
   const { isOpen, changeToOpen } = useModal();
@@ -18,18 +18,15 @@ export const Clients = () => {
   const [isOptionModalOpen, setIsOptionModalOpen] = useState(null);
   const [clientsList, setClientsList] = useState([]); // Inicializar vacío
 
+
+  const handleGetServices = async() => {
+      const services = await getClients(); 
+      setClientsList(services);
+  }
   // Cargar los datos de los clientes
   useEffect(() => {
-    const fetchClients = async () => {
-      try {
-        const response = await axios.get(`${config.apiBaseUrl}/users`); // Cambia la URL según tu API
-        setClientsList(response.data.data); // Asignar los datos correctamente
-      } catch (error) {
-        console.error("Error fetching clients:", error);
-      }
-    };
+      handleGetServices();
 
-    fetchClients();
   }, []);
 
   const handleisOptionModalOpenbyId = (clientId) => {
@@ -191,7 +188,7 @@ export const Clients = () => {
                     <svg className="exit-img" width="15px" height="15px"></svg>
                   </button>
                 </div>
-                <ManageClientServices />
+                <AddServiceModal id={isOptionModalOpen} />
               </div>
             </div>
           )}
