@@ -45,8 +45,7 @@ export const ClientRegister = () => {
                 value={formData.phone_number}
                 onChange={handleChange}/>
             <button
-                type="button"
-                onClick={changeToOpen}>Continuar</button>
+                type="submit">Continuar</button>
             {isOpen && clientId &&
             <div className="overlay-plans">
                 <div className="form-container">
