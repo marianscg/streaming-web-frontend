@@ -168,10 +168,17 @@ export const Clients = () => {
                     <svg className="exit-img" width="15px" height="15px"></svg>
                   </button>
                 </div>
-                <ClientUpdate />
+                {/* Pasar el clientId al componente ClientUpdate */}
+                <ClientUpdate
+                  clientId={selectedClientId}
+                  onUpdateSuccess={() => {
+                    setActiveOptionModal(null); // Cerrar el modal
+                  }}
+                />
               </div>
             </div>
           )}
+
           {activeOptionModal === "add-service" && (
             <div className="overlay">
               <div className="form-container">
