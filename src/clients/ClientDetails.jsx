@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { config } from "../config/envs";
 
+
+
 export const ClientDetails = ({ clientId }) => {
     const [clientData, setClientData] = useState(null);
     console.log("Aquii: ", clientId);
@@ -38,7 +40,7 @@ export const ClientDetails = ({ clientId }) => {
           <h2 className="secundary-tittle">Servicios contratados</h2>
           {clientData.services && clientData.services.length > 0 ? (
             clientData.services.map((service, index) => (
-              <div key={index}>
+              <div key={index} className="div-container">
                 <label>Nombre del servicio</label>
                 <input
                   type="text"

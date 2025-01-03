@@ -76,3 +76,8 @@ input:disabled {
     color: #6220bf;
     font-family: 'Inter', sans-serif;
 }
+
+.div-container {
+    display: flex;
+    flex-direction: column;
+}

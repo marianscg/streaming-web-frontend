@@ -41,3 +41,21 @@ export const getServiceById = async (id) => {
     return services;
   };
 
+  export const getServiceByName = async(value) => {
+    try {
+        const response = await axios.get(`http://localhost:8088/api/services/find?name=${value}`);
+
+        if (response.status === 200) {
+            console.log('Traidos', response.status);
+            // console.log(response.data)
+            return response.data.data;
+            
+        } else {
+            alert('Error al buscar el cliente');
+        }
+
+    } catch (error) {
+        console.error('Error al buscar el cliente: ', error);
+    }
+}
+

@@ -41,14 +41,14 @@ export const getClients = async () => {
         });
         // const { isAuthenticated, isAdmin } = response.data
         if (response.status === 201) {
-            console.log('Creado correctamente', response.status);
+            console.log('Servicios asignados correctamente', response.status);
             
         } else {
-            alert('Error al asignar el plan');
+            alert('Error al asignar servicios al cliente');
         }
     } catch (error) {
-        console.error('Error al asignar el plan:', error);
-        alert('Error al asignarr el plan');
+        console.error('Error al asignar servicios al cliente:', error);
+        alert('Error al asignar servicios al cliente');
     }
 };
 
@@ -59,8 +59,8 @@ export const getPlansByService = async (id) => {
         // const { isAuthenticated, isAdmin } = response.data
         if (response.status === 200) {
             console.log('Traidos', response.status);
-            console.log('esto es id', id);
-            return response;
+            // console.log(response.data)
+            return response.data;
             
         } else {
             alert('Error al traer los planes');
@@ -70,3 +70,54 @@ export const getPlansByService = async (id) => {
         alert('Error al traer los planes');
     }
 };
+
+export const getClientById = async (id) => {
+    console.log('esto es id dentro: ', id)
+    try {
+        const response = await axios.get(`http://localhost:8088/api/users/${id}`);
+
+        if (response.status === 200) {
+
+            const { data } = response.data;
+            const clients = data;
+            return clients;
+        }
+
+    } catch (error) {
+        console.error('Error al traer los datos del cliente: ', error);
+    }
+};
+
+export const updateClient = async(event, formData, id) => {
+    event.preventDefault();
+    console.log('esto es client dentro', formData)
+      try {
+        const response = await axios.patch(`${config.apiBaseUrl}/users/${id}/edit`, formData);
+        if(response.status === 200)
+        alert("Cliente actualizado exitosamente.");
+        // onUpdateSuccess(); // Notificar al componente padre
+      } catch (error) {
+        console.error("Error updating client:", error);
+        alert("Hubo un error al actualizar el cliente.");
+      }
+
+}
+
+export const getClientByName = async(value) => {
+    try {
+        const response = await axios.get(`http://localhost:8088/api/users/find?name=${value}`);
+
+        if (response.status === 200) {
+            console.log('Traidos', response.status);
+            // console.log(response.data)
+            return response.data;
+            
+        } else {
+            alert('Error al buscar el cliente');
+        }
+
+    } catch (error) {
+        console.error('Error al buscar el cliente: ', error);
+    }
+}
+

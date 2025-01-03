@@ -11,6 +11,7 @@ export const createPlan = async (event, formData, id) => {
         // const { isAuthenticated, isAdmin } = response.data
         if (response.status === 201) {
             console.log('Creado correctamente', response.status);
+            window.location.reload();
             
         } else {
             alert('Error al añadir el plan');
