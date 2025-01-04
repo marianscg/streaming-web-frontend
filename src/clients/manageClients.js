@@ -110,7 +110,7 @@ export const getClientByName = async(value) => {
         if (response.status === 200) {
             console.log('Traidos', response.status);
             // console.log(response.data)
-            return response.data;
+            return response.data.data;
             
         } else {
             alert('Error al buscar el cliente');
@@ -120,4 +120,21 @@ export const getClientByName = async(value) => {
         console.error('Error al buscar el cliente: ', error);
     }
 }
+
+export const getAccountByIdClient = async (id) => {
+    console.log('esto es id dentro: ', id)
+    try {
+        const response = await axios.get(`http://localhost:8088/api/users/${id}/services-details`);
+
+        if (response.status === 200) {
+
+            const { data } = response.data;
+            const clients = data;
+            return clients;
+        }
+
+    } catch (error) {
+        console.error('Error al traer los correos disponibles: ', error);
+    }
+};
 

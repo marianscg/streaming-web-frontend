@@ -8,19 +8,8 @@ export const AddServiceModal = ({ idClient }) => {
         service_plans_id: "",
         account_id: "",
     }]);
-
     const [plansList, setPlansList] = useState({});
-    const [services, setServices] = useState([]);
-
-    // Obtener servicios al cargar el componente
-    useEffect(() => {
-        handleSelectServices();
-    }, []);
-
-    const handleSelectServices = async () => {
-        const rsp = await getServices();
-        setServices(rsp);
-    };
+    const [accounts, setAccounts] = useState([]);
 
     const handleServicesList = () => {
         setServiceList([...serviceList, {
@@ -29,6 +18,18 @@ export const AddServiceModal = ({ idClient }) => {
             account_id: "",
         }]);
     };
+
+    const [services, setServices] = useState([]);
+    // Obtener servicios al cargar el componente
+
+    const handleSelectServices = async () => {
+        const rsp = await getServices();
+        setServices(rsp);
+    };
+
+    useEffect(() => {
+        handleSelectServices();
+    }, []);
 
     const handleServiceRemoveButton = (index) => {
         const list = [...serviceList];
@@ -60,7 +61,7 @@ export const AddServiceModal = ({ idClient }) => {
             } catch (error) {
                 console.error("Error al obtener planes:", error);
             }
-        }
+        } 
     };
 
     const handleSubmit = async (event) => {
@@ -78,7 +79,7 @@ export const AddServiceModal = ({ idClient }) => {
         if (!isValid) {
             alert("Por favor, complete todos los campos antes de enviar.");
             return;
-        }
+        } else 
         assignAccount(event, filteredServiceList, idClient);
     };
 

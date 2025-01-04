@@ -1,27 +1,88 @@
 import { useState } from "react"
+import { getServices } from "../services/service";
+import { assignAccount, getPlansByService } from "./manageClients";
 
-export const ManageClientServices = () => {
-    const [serviceList, setServiceList] = useState([{
-        name: "",
-        plan: "",
-        entry_date: "",
-        period: "",
-    }])
+export const ManageClientServices = ({ idClient }) => {
+        const [serviceList, setServiceList] = useState([{
+            service_id: "",
+            service_plans_id: "",
+            account_id: "",
+        }]);
+        const [plansList, setPlansList] = useState({});
+        const [accounts, setAccounts] = useState([]);
     
-    const handleServicesList = () => {
+        const handleServicesList = () => {
             setServiceList([...serviceList, {
-                name: "",
-                plan: "",
-                entry_date: "",
-                period: "",
-            }])
-        }
-
-    const handleServiceRemoveButton = (index) => {
-        const list = [...serviceList];
-        list.splice(index, 1);
-        setServiceList(list);
-    }
+                service_id: "",
+                service_plans_id: "",
+                account_id: "",
+            }]);
+        };
+        
+        const [services, setServices] = useState([]);
+        // Obtener servicios al cargar el componente
+    
+        const handleSelectServices = async () => {
+            const rsp = await getServices();
+            setServices(rsp);
+        };
+    
+        useEffect(() => {
+            handleSelectServices();
+        }, []);
+    
+        const handleServiceRemoveButton = (index) => {
+            const list = [...serviceList];
+            list.splice(index, 1);
+            setServiceList(list);
+    
+            // Eliminar los planes correspondientes a este servicio
+            const updatedPlansList = { ...plansList };
+            delete updatedPlansList[index];
+            setPlansList(updatedPlansList);
+        };
+    
+        const handleServiceChange = async (index, event) => {
+            const { name, value } = event.target;
+            const updatedService = [...serviceList];
+            updatedService[index][name] =
+                name === "account_id" || name === "service_plans_id" ? Number(value) : value;
+    
+            setServiceList(updatedService);
+    
+            // Si cambia el servicio, obtener los planes y actualizarlos solo para este índice
+            if (name === "service_id") {
+                try {
+                    const rsp = await getPlansByService(Number(value));
+                    setPlansList((prevPlans) => ({
+                        ...prevPlans,
+                        [index]: rsp.data
+                    }));
+                } catch (error) {
+                    console.error("Error al obtener planes:", error);
+                }
+            } 
+        };
+        
+        const handleSubmit = async (event) => {
+    
+            const filteredServiceList = serviceList.map(({ service_id, service_plans_id }) => ({
+                service_id,
+                service_plans_id
+            }));
+        
+            // Verificar que todos los campos estén completos
+            const isValid = filteredServiceList.every(
+                (service) => service.service_id && service.service_plans_id
+            );
+        
+            if (!isValid) {
+                alert("Por favor, complete todos los campos antes de enviar.");
+                return;
+            } else 
+            assignAccount(event, filteredServiceList, idClient);
+        };
+    
     return (
     <>
         <h1 className="form-tittle">Añadir servicios</h1>

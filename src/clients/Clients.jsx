@@ -41,6 +41,7 @@ export const Clients = () => {
     const handleGetClientByName = async (value) => {
       const clientByName = await getClientByName(value);
       setInputSearchedValue(clientByName);
+      console.log(inputSearchedValue)
     };
 
     const handleChangeInputSearchValue = ({target}) => {
@@ -103,43 +104,43 @@ export const Clients = () => {
                   </thead>
                   <tbody>
                     {
-                    // inputSearchedValue.length > 0 ? (
-                    //   inputSearchedValue.map((client) => (
-                    //     <tr key={client.id}>
-                    //         <td>{client.fullname}</td>
-                    //         <td>{client.phone_number}</td>
-                    //         <td>
-                    //             <button
-                    //               className="table-button"
-                    //               onClick={() => openClientDetails(client.id)}>
-                    //             <img
-                    //               src="/assets/eye.png"
-                    //               height="32px"
-                    //               width="32px"
-                    //               alt="Ver"/>
-                    //             </button>
-                    //         </td>
-                    //       <td>
-                    //           <button
-                    //               className="table-button"
-                    //               onClick={() => handleisOptionModalOpenbyId(client.id)}>
-                    //               <img
-                    //                 src="/assets/more.png"
-                    //                 height="32px"
-                    //                 width="32px"
-                    //                 alt="Opciones"/>
-                    //           </button>
-                    //           {isOptionModalOpen === client.id && (
-                    //               <TableOptionsModal
-                    //                 onClose={() => setIsOptionModalOpen(null)}
-                    //                 onSelectOption={(option) =>
-                    //                   setActiveOptionModal(option)
-                    //                 }
-                    //             />)}
-                    //       </td>
-                    //     </tr>
-                    //   ))
-                    // ): 
+                    inputSearchedValue.length > 0 ? (
+                      inputSearchedValue.map((client) => (
+                        <tr key={client.id}>
+                            <td>{client.fullname}</td>
+                            <td>{client.phone_number}</td>
+                            <td>
+                                <button
+                                  className="table-button"
+                                  onClick={() => openClientDetails(client.id)}>
+                                <img
+                                  src="/assets/eye.png"
+                                  height="32px"
+                                  width="32px"
+                                  alt="Ver"/>
+                                </button>
+                            </td>
+                          <td>
+                              <button
+                                  className="table-button"
+                                  onClick={() => handleisOptionModalOpenbyId(client.id)}>
+                                  <img
+                                    src="/assets/more.png"
+                                    height="32px"
+                                    width="32px"
+                                    alt="Opciones"/>
+                              </button>
+                              {isOptionModalOpen === client.id && (
+                                  <TableOptionsModal
+                                    onClose={() => setIsOptionModalOpen(null)}
+                                    onSelectOption={(option) =>
+                                      setActiveOptionModal(option)
+                                    }
+                                />)}
+                          </td>
+                        </tr>
+                      ))
+                    ): 
                     clientsList.map((client) => (
                       <tr key={client.id}>
                           <td>{client.fullname}</td>
