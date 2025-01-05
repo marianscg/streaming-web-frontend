@@ -10,12 +10,14 @@ export const clientRegister = async (event, formData) => {
         });
         // const { isAuthenticated, isAdmin } = response.data
         if (response.status === 201) {
-             console.log(response.data.clientId)
              return response.data.clientId;
         } else {
-            alert('Error al registrar el cliente');
+            alert('Error al registar el cliente');
         }
     } catch (error) {
+        if (error.response.status === 404){
+            alert('Este usuario ya se encuentra registrado');
+        } else 
         console.error('Error al registrar el cliente:', error);
         alert('Error al registrar el cliente');
     }
@@ -33,15 +35,17 @@ export const getClients = async () => {
   };
 
   export const assignAccount = async (event, formData, id) => {
-    console.log(formData)
+    console.log('esto es id', id)
     event.preventDefault();
     try {
-        const response = await axios.post(`http://localhost:8088/api/users/${id}/assign-account`, formData, {
+        const response = await axios.post(`http://localhost:8088/api/users/${id}/assign-account`, {services: formData}, {
             withCredentials: true
         });
         // const { isAuthenticated, isAdmin } = response.data
         if (response.status === 201) {
+            alert('Servicios asignados correctamente')
             console.log('Servicios asignados correctamente', response.status);
+            window.location.reload();
             
         } else {
             alert('Error al asignar servicios al cliente');
@@ -95,6 +99,7 @@ export const updateClient = async(event, formData, id) => {
         const response = await axios.patch(`${config.apiBaseUrl}/users/${id}/edit`, formData);
         if(response.status === 200)
         alert("Cliente actualizado exitosamente.");
+        window.location.reload();
         // onUpdateSuccess(); // Notificar al componente padre
       } catch (error) {
         console.error("Error updating client:", error);
@@ -121,20 +126,27 @@ export const getClientByName = async(value) => {
     }
 }
 
-export const getAccountByIdClient = async (id) => {
+export const getAccountsByIdService = async (id) => {
     console.log('esto es id dentro: ', id)
     try {
-        const response = await axios.get(`http://localhost:8088/api/users/${id}/services-details`);
+        const response = await axios.get(`http://localhost:8088/api/accounts/${id}/plans`);
 
         if (response.status === 200) {
 
             const { data } = response.data;
-            const clients = data;
-            return clients;
+            const accounts = data.flatMap(item => 
+                item.accounts.map(account => ({
+                    email: account.email,
+                    id: account.id
+                }))
+            )
+            return accounts;
         }
 
     } catch (error) {
         console.error('Error al traer los correos disponibles: ', error);
     }
 };
+
+
 

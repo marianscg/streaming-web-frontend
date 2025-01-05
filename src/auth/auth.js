@@ -12,11 +12,12 @@ export const handleAuth = async (event, formData, navigate) => {
         // const { isAuthenticated, isAdmin } = response.data
         if (response.status === 201) {
              navigate('/services');
-        } else {
-            alert('El usuario o la clave son incorrectos');
+             return false
+        } else if (response.status === 401){
+            return true;
         }
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
-        alert('Error al iniciar sesión');
+        return true
     }
 };

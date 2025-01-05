@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getServices } from '../services/service';
-import { assignAccount, getPlansByService } from './manageClients';
+import { assignAccount, getAccountsByIdService, getPlansByService } from './manageClients';
+
 
 export const AddServiceModal = ({ idClient }) => {
     const [serviceList, setServiceList] = useState([{
@@ -9,8 +10,8 @@ export const AddServiceModal = ({ idClient }) => {
         account_id: "",
     }]);
     const [plansList, setPlansList] = useState({});
-    const [accounts, setAccounts] = useState([]);
-
+    const [accountsList, setAccountsList] = useState([]);
+    const [clientId, setClientId] = useState(idClient);
     const handleServicesList = () => {
         setServiceList([...serviceList, {
             service_id: "",
@@ -40,6 +41,10 @@ export const AddServiceModal = ({ idClient }) => {
         const updatedPlansList = { ...plansList };
         delete updatedPlansList[index];
         setPlansList(updatedPlansList);
+
+        const updatedAccountsList = {...accountsList };
+        delete updatedAccountsList[index];
+        setAccountsList(updatedAccountsList);
     };
 
     const handleServiceChange = async (index, event) => {
@@ -58,30 +63,41 @@ export const AddServiceModal = ({ idClient }) => {
                     ...prevPlans,
                     [index]: rsp.data
                 }));
+                const account = await getAccountsByIdService(Number(value));
+                setAccountsList((prevAccounts) => ({
+                    ...prevAccounts,
+                    [index]: account
+                }));
             } catch (error) {
                 console.error("Error al obtener planes:", error);
             }
-        } 
+        }
     };
 
     const handleSubmit = async (event) => {
 
-        const filteredServiceList = serviceList.map(({ service_id, service_plans_id }) => ({
-            service_id,
-            service_plans_id
+        const filteredServiceList = serviceList.map(({ account_id, service_plans_id }) => ({
+            service_plans_id,
+            account_id
+            
         }));
     
         // Verificar que todos los campos estén completos
         const isValid = filteredServiceList.every(
-            (service) => service.service_id && service.service_plans_id
+            (service) => service.service_plans_id && service.account_id 
         );
     
         if (!isValid) {
             alert("Por favor, complete todos los campos antes de enviar.");
             return;
         } else 
-        assignAccount(event, filteredServiceList, idClient);
+        assignAccount(event, filteredServiceList, clientId);
+        console.log('esto es filteredServicesList: ',filteredServiceList);
     };
+
+    useEffect(() => {
+        setClientId(idClient);
+    }, [])
 
     return (
         <>
@@ -133,7 +149,13 @@ export const AddServiceModal = ({ idClient }) => {
                                 onChange={(e) => handleServiceChange(index, e)}
                                 value={service.account_id}>
                                 <option>Escoja una opción</option>
-                                {/* Aquí puedes agregar las opciones de cuentas según tu lógica */}
+                                {accountsList[index] ? (
+                                    accountsList[index].map((account) => (
+                                        <option key={account.id} value={account.id}>{account.email}</option>
+                                    ))
+                                ) : (
+                                    <option value="" disabled>No hay cuentas disponibles</option>
+                                )}
                             </select>
                         </div>
                         {serviceList.length > 1 && (

@@ -25,11 +25,11 @@ export const NavBar = () => {
                     className={({ isActive }) => isActive ? "active" : ""}>
                     Clientes
                 </NavLink>
-                <NavLink 
+                {/* <NavLink 
                     to='/bills' 
                     className={({ isActive }) => isActive ? "active" : ""}>
                     Control de ingresos
-                </NavLink>
+                </NavLink> */}
             </div>
             </div>
             <div>

@@ -9,7 +9,7 @@ import { ClientUpdate } from "./ClientUpdate";
 import { ManageClientServices } from "./ManageClientServices";
 import { getClientByName, getClients } from "./manageClients";
 import { AddServiceModal } from "./AddServiceModal";
-
+import * as Yup from 'yup';
 export const Clients = () => {
     const { isOpen, changeToOpen } = useModal();
     const [clientDetailsModal, setClientDetailsModal] = useState(false);
