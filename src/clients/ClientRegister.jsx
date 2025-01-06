@@ -56,7 +56,7 @@ export const ClientRegister = () => {
     useEffect(() => {
         if(clientId){
             changeToOpen();
-            console.log(clientId);
+            // console.log(clientId);
         }
     }, [clientId])
     return (
@@ -79,7 +79,8 @@ export const ClientRegister = () => {
                 onChange={handleChange}/>
             <button
                 type="submit">Continuar</button>
-            {isOpen && clientId &&
+        </form>
+        {isOpen && clientId &&
             <div className="overlay-plans">
                 <div className="form-container">
                     <div className="exit-button-container">
@@ -88,9 +89,8 @@ export const ClientRegister = () => {
                             type="button"
                             onClick={changeToOpen}><svg className="exit-img" width="15px" height="15px"></svg></button>
                     </div>
-                    <AddServiceModal id={clientId}/>
+                    <AddServiceModal idClient={clientId}/>
                 </div>
             </div>}
-        </form>
     </>    
     )}

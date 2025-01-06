@@ -86,18 +86,25 @@ export const AddServiceModal = ({ idClient }) => {
         const isValid = filteredServiceList.every(
             (service) => service.service_plans_id && service.account_id 
         );
-    
         if (!isValid) {
             alert("Por favor, complete todos los campos antes de enviar.");
             return;
         } else 
-        assignAccount(event, filteredServiceList, clientId);
-        console.log('esto es filteredServicesList: ',filteredServiceList);
+        try {
+            await assignAccount(event, filteredServiceList, clientId);
+            console.log('esto es filteredServicesList: ',filteredServiceList);
+            
+        } catch (error) {
+            console.log(error)
+        }
+        
     };
 
     useEffect(() => {
         setClientId(idClient);
-    }, [])
+        console.log(idClient)
+    }, [idClient])
+    
 
     return (
         <>

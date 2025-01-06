@@ -45,7 +45,7 @@ export const getClients = async () => {
         if (response.status === 201) {
             alert('Servicios asignados correctamente')
             console.log('Servicios asignados correctamente', response.status);
-            window.location.reload();
+            // window.location.reload();
             
         } else {
             alert('Error al asignar servicios al cliente');
