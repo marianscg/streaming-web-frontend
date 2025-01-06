@@ -182,7 +182,7 @@ export const Clients = () => {
               {/* Modal para los detalles del cliente */}
               {clientDetailsModal && selectedClientId && (
                 <div className="overlay">
-                  <div className="form-container">
+                  <div className="form-container-details">
                     <div className="exit-button-container">
                       <button
                         className="exit-button"

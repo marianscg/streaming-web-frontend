@@ -9,8 +9,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow-y: auto
-  }
+    overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+}
 
 .overlay-plans {
     position: fixed;
@@ -32,6 +32,43 @@
     border-radius: 2rem;
     height:fit-content;
 }
+
+.form-container-details {
+    padding: 1rem 2rem; 
+    background-color: #dcdeee; 
+    border-radius: 2rem; 
+    max-height: 80vh; /* Limita la altura del formulario al 80% de la ventana */ 
+    overflow-y: auto; /* Activa el scroll vertical dentro del contenedor */ 
+    width: 90%; /* Asegura que sea responsive */ 
+    max-width: 500px; /* Ancho máximo */ 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para mayor visibilidad */ 
+}
+
+.form-container-details::-webkit-scrollbar { 
+    width: 8px; /* Ancho del scrollbar */ 
+} 
+ 
+.form-container-details::-webkit-scrollbar-track { 
+    background: #c3c6dd; /* Fondo del track */ 
+    border-radius: 10px; /* Bordes redondeados */ 
+} 
+ 
+.form-container-details::-webkit-scrollbar-thumb { 
+    background-color: #6220bf; /* Color del thumb (scroll) */ 
+    border-radius: 10px; /* Bordes redondeados */ 
+    border: 2px solid #c3c6dd; /* Espacio alrededor del thumb */ 
+} 
+ 
+.form-container-details::-webkit-scrollbar-thumb:hover { 
+    background-color: #4a158e; /* Color más oscuro al pasar el mouse */ 
+} 
+ 
+/* Estilo para el scrollbar en Firefox */ 
+.form-container-details { 
+    scrollbar-width: thin; /* Scrollbar más delgado */ 
+    scrollbar-color: #6220bf #c3c6dd; /* Color del thumb y track */ 
+} 
+ 
 
 .form-tittle {
     color: #6220bf;
